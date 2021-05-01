@@ -1,0 +1,60 @@
+title: |-
+  React Native Bundle
+summary: |
+  Bundles your React Native app
+description: |
+  Bundles your React Native app
+website: https://github.com/martin-cotta/bitrise-step-react-native-bundle
+source_code_url: https://github.com/martin-cotta/bitrise-step-react-native-bundle
+support_url: https://github.com/martin-cotta/bitrise-step-react-native-bundle/issues
+host_os_tags:
+  - osx-10.10
+  - ubuntu-16.04
+project_type_tags:
+  - react-native
+type_tags:
+  - build
+is_requires_admin_user: true
+is_always_run: false
+is_skippable: false
+deps:
+  brew:
+  - name: node
+toolkit:
+  bash:
+    entry_file: step.sh
+inputs:
+  - platform: android
+    opts:
+      title: Bundle platform
+      summary: Specify either `ios`, or `android` as platform for the bundler.
+      description: Specify either `ios`, or `android` as platform for the bundler.
+      is_required: true
+      value_options:
+      - "ios"
+      - "android"
+  - bundle_output: ${platform}-bundle/main.jsbundle
+    opts:
+      title: Bundle output
+      summary: File name where to store the resulting bundle, ex. ./tmp/main.jsbundle.
+      description: File name where to store the resulting bundle, ex. ./tmp/main.jsbundle.
+  - sourcemap_output: ${platform}-bundle/main.jsbundle.map
+    opts:
+      title: Sourcemap output
+      summary: File name where to store the sourcemap file for resulting bundle, ex. ./tmp/groups.bundle.
+      description: File name where to store the sourcemap file for resulting bundle, ex. ./tmp/groups.bundle.
+  - assets_dest: ${platform}-bundle/assets
+    opts:
+      title: Assets Destination
+      summary: Directory name where to store assets referenced in the bundle.
+      description: Directory name where to store assets referenced in the bundle.
+outputs:
+  - RN_BUNDLE_FILE_PATH:
+    opts:
+      title: Resulting bundle file path
+  - RN_BUNDLE_SOURCEMAP_FILE_PATH:
+    opts:
+      title: Resulting bundle sourcemap file path
+  - RN_BUNDLE_ASSETS_PATH:
+    opts:
+      title: Resulting bundle assets directory
